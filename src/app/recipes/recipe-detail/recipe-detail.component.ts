@@ -14,7 +14,6 @@ export class RecipeDetailComponent implements OnInit {
   id: number;
 
   constructor(
-    private shoppingService: ShoppingListService,
     private recipeService: RecipeService,
     private route: ActivatedRoute
   ) {}
@@ -27,6 +26,6 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onAddToShoppingList() {
-    this.shoppingService.addIngredient(this.recipe.ingredients);
+    this.recipeService.addIngredientsToShippingList(this.recipe.ingredients);
   }
 }
