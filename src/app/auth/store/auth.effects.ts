@@ -135,7 +135,7 @@ export class AuthEffects {
     })
   );
 
-  @Effect({ dispatch: false })
+  @Effect()
   autoLogin = this.actions$.pipe(
     ofType(AuthActions.AUTO_LOGIN),
     map(() => {
