@@ -29,8 +29,10 @@ export function recipeReducer(
         ...state.recipes[action.payload.index],
         ...action.payload.newRecipe,
       };
+
       const updatedRecipes = [...state.recipes];
       updatedRecipes[action.payload.index] = updatedRecipe;
+
       return {
         ...state,
         recipes: updatedRecipes,
@@ -38,9 +40,9 @@ export function recipeReducer(
     case RecipesActions.DELETE_RECIPE:
       return {
         ...state,
-        recipes: state.recipes.filter(
-          (recipe, index) => index !== action.payload
-        ),
+        recipes: state.recipes.filter((recipe, index) => {
+          return index !== action.payload;
+        }),
       };
     default:
       return state;

@@ -9,7 +9,6 @@ import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth.service';
 import { User } from '../user.model';
 import * as AuthActions from './auth.actions';
-
 export interface AuthResponseData {
   kind: string;
   idToken: string;
@@ -24,9 +23,9 @@ const handleAuthentication = (
   email: string,
   userId: string,
   token: string,
-  expirationIn: number
+  expiresIn: number
 ) => {
-  const expirationDate = new Date(new Date().getTime() + expirationIn * 1000);
+  const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
   const user = new User(email, userId, token, expirationDate);
   localStorage.setItem('userData', JSON.stringify(user));
   return new AuthActions.AuthenticateSuccess({
@@ -38,23 +37,23 @@ const handleAuthentication = (
   });
 };
 
-const handleError = (errorRes) => {
-  let errorMsg = 'An unknown error occurred!';
+const handleError = (errorRes: any) => {
+  let errorMessage = 'An unknown error occurred!';
   if (!errorRes.error || !errorRes.error.error) {
-    return of(new AuthActions.AuthenticateFail(errorMsg));
+    return of(new AuthActions.AuthenticateFail(errorMessage));
   }
   switch (errorRes.error.error.message) {
     case 'EMAIL_EXISTS':
-      errorMsg = 'This email exists already!';
+      errorMessage = 'This email exists already';
       break;
     case 'EMAIL_NOT_FOUND':
-      errorMsg = 'This email does not exist!';
+      errorMessage = 'This email does not exist.';
       break;
     case 'INVALID_PASSWORD':
-      errorMsg = 'This password is not correct.';
+      errorMessage = 'This password is not correct.';
       break;
   }
-  return of(new AuthActions.AuthenticateFail(errorMsg));
+  return of(new AuthActions.AuthenticateFail(errorMessage));
 };
 
 @Injectable()
@@ -161,7 +160,6 @@ export class AuthEffects {
           new Date(userData._tokenExpirationDate).getTime() -
           new Date().getTime();
         this.authService.setLogoutTimer(expirationDuration);
-
         return new AuthActions.AuthenticateSuccess({
           email: loadedUser.email,
           userId: loadedUser.id,
