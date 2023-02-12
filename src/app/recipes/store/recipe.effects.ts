@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, Effect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { withLatestFrom } from 'rxjs/internal/operators/withLatestFrom';
 import { map, switchMap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';

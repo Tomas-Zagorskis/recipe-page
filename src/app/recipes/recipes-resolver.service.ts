@@ -24,16 +24,12 @@ export class RecipesResolverService implements Resolve<Recipe[]> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<Recipe[]> | Promise<Recipe[]> {
-    console.log('resolver');
-
     return this.store.select('recipes').pipe(
       take(1),
       map((recipesState) => {
         return recipesState.recipes;
       }),
       switchMap((recipes) => {
-        console.log(recipes.length);
-
         if (recipes.length === 0) {
           this.store.dispatch(RecipesActions.fetchRecipes());
           return this.actions$
