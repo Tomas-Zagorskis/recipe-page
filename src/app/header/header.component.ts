@@ -27,12 +27,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
       });
   }
   onSaveData() {
-    // this.dataStorageService.storeRecipes();
     this.store.dispatch(RecipesActions.storeRecipes());
   }
 
   onFetchData() {
-    // this.dataStorageService.fetchRecipes().subscribe();
     this.store.dispatch(RecipesActions.fetchRecipes());
   }
 
