@@ -9,7 +9,7 @@
             ngModel
             type="text"
             id="name"
-            class="form-control"
+            class="form-control inset-shadow"
             required
           />
         </div>
@@ -20,29 +20,27 @@
             ngModel
             type="number"
             id="amount"
-            class="form-control"
+            class="form-control inset-shadow"
             required
             pattern="^[1-9]+[0-9]*$"
           />
         </div>
       </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <button class="btn btn-success" type="submit" [disabled]="!f.valid">
-            {{ editMode ? "Update" : "Add" }}
-          </button>
-          <button
-            class="btn btn-danger"
-            type="button"
-            *ngIf="editMode"
-            (click)="onDelete()"
-          >
-            Delete
-          </button>
-          <button class="btn btn-primary" type="button" (click)="onClear()">
-            Clear
-          </button>
-        </div>
+      <div class="btn-row col-xs-12">
+        <button class="btn btn-success" type="submit" [disabled]="!f.valid">
+          {{ editMode ? "Update" : "Add" }}
+        </button>
+        <button
+          class="btn btn-danger"
+          type="button"
+          *ngIf="editMode"
+          (click)="onDelete()"
+        >
+          Delete
+        </button>
+        <button class="btn btn-primary" type="button" (click)="onClear()">
+          Clear
+        </button>
       </div>
     </form>
   </div>
