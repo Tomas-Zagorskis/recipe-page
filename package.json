@@ -18,16 +18,21 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
+    "@ngrx/effects": "^14.3.3",
+    "@ngrx/router-store": "^14.3.3",
+    "@ngrx/store": "^14.3.3",
+    "bootstrap": "^3.0.0",
+    "firebase": "^10.3.1",
     "rxjs": "^6.6.3",
     "rxjs-compat": "^6.0.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.11.4",
-    "bootstrap": "^3.0.0"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.2.7",
     "@angular/cli": "~14.2.7",
     "@angular/compiler-cli": "^14.2.0",
+    "@ngrx/store-devtools": "^14.3.3",
     "@types/jasmine": "~4.0.0",
     "jasmine-core": "~4.3.0",
     "karma": "~6.4.0",
