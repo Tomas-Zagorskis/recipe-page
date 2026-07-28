@@ -7,10 +7,10 @@ import * as ShoppingListActions from '../store/shopping-list.actions';
 import * as fromApp from '../../store/app.reducer';
 
 @Component({
-    selector: 'app-shopping-edit',
-    templateUrl: './shopping-edit.component.html',
-    styleUrls: ['./shopping-edit.component.css'],
-    standalone: false
+  selector: 'app-shopping-edit',
+  templateUrl: './shopping-edit.component.html',
+  styleUrls: ['./shopping-edit.component.css'],
+  standalone: false,
 })
 export class ShoppingEditComponent implements OnInit, OnDestroy {
   @ViewChild('f', { static: false }) slForm: NgForm;
@@ -42,11 +42,11 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     const newIngredient = new Ingredient(value.name, value.amount);
     if (this.editMode) {
       this.store.dispatch(
-        ShoppingListActions.updateIngredient({ ingredient: newIngredient })
+        ShoppingListActions.updateIngredient({ ingredient: newIngredient }),
       );
     } else {
       this.store.dispatch(
-        ShoppingListActions.addIngredient({ ingredient: newIngredient })
+        ShoppingListActions.addIngredient({ ingredient: newIngredient }),
       );
     }
     this.editMode = false;

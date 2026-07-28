@@ -11,38 +11,34 @@
             id="name"
             class="form-control inset-shadow"
             required
-            />
-          </div>
-          <div class="col-sm-2 form-group">
-            <label for="amount">Amount</label>
-            <input
-              name="amount"
-              ngModel
-              type="number"
-              id="amount"
-              class="form-control inset-shadow"
-              required
-              pattern="^[1-9]+[0-9]*$"
-              />
-            </div>
-          </div>
-          <div class="btn-row col-xs-12">
-            <button class="btn btn-success" type="submit" [disabled]="!f.valid">
-              {{ editMode ? "Update" : "Add" }}
-            </button>
-            @if (editMode) {
-              <button
-                class="btn btn-danger"
-                type="button"
-                (click)="onDelete()"
-                >
-                Delete
-              </button>
-            }
-            <button class="btn btn-primary" type="button" (click)="onClear()">
-              Clear
-            </button>
-          </div>
-        </form>
+          />
+        </div>
+        <div class="col-sm-2 form-group">
+          <label for="amount">Amount</label>
+          <input
+            name="amount"
+            ngModel
+            type="number"
+            id="amount"
+            class="form-control inset-shadow"
+            required
+            pattern="^[1-9]+[0-9]*$"
+          />
+        </div>
       </div>
-    </div>
+      <div class="btn-row col-xs-12">
+        <button class="btn btn-success" type="submit" [disabled]="!f.valid">
+          {{ editMode ? "Update" : "Add" }}
+        </button>
+        @if (editMode) {
+          <button class="btn btn-danger" type="button" (click)="onDelete()">
+            Delete
+          </button>
+        }
+        <button class="btn btn-primary" type="button" (click)="onClear()">
+          Clear
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

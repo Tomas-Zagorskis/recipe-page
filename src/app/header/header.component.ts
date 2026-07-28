@@ -8,9 +8,9 @@ import * as AuthActions from '../auth/store/auth.actions';
 import * as RecipesActions from '../recipes/store/recipe.actions';
 
 @Component({
-    selector: 'app-header',
-    templateUrl: 'header.component.html',
-    standalone: false
+  selector: 'app-header',
+  templateUrl: 'header.component.html',
+  standalone: false,
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   private userSub: Subscription;

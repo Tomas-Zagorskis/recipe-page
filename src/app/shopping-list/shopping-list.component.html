@@ -4,13 +4,15 @@
     <hr />
     <ul class="list-group">
       @for (
-        ingredient of (ingredients | async).ingredients; track
-        ingredient; let i = $index) {
+        ingredient of (ingredients | async).ingredients;
+        track ingredient;
+        let i = $index
+      ) {
         <a
           class="list-group-item"
           style="cursor: pointer"
           (click)="onEditItem(i)"
-          >
+        >
           {{ ingredient.name }} ({{ ingredient.amount }})
         </a>
       }

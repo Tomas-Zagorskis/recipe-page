@@ -5,7 +5,7 @@
         type="button"
         class="navbar-toggle"
         (click)="collapsed = !collapsed"
-        >
+      >
         @for (iconBar of [1, 2, 3]; track iconBar) {
           <span class="icon-bar"></span>
         }
@@ -16,7 +16,7 @@
       class="navbar-collapse"
       [class.collapse]="collapsed"
       (window:resize)="collapsed = true"
-      >
+    >
       <ul class="nav navbar-nav">
         @if (isAuthenticated) {
           <li routerLinkActive="active">
@@ -35,27 +35,34 @@
       <ul class="nav navbar-nav navbar-right">
         @if (isAuthenticated) {
           <li>
-            <a style="cursor: 'pointer'" (click)="onLogout()">Logout</a>
+            <a style="cursor: 'pointer'" (click)="onLogout()"
+              >Logout</a
+            >
           </li>
         }
         @if (isAuthenticated) {
           <li class="dropdown" appDropdown>
-            <a style="cursor: 'pointer'" class="dropdown-toggle" role="button"
+            <a
+              style="cursor: 'pointer'"
+              class="dropdown-toggle"
+              role="button"
               >Manage <span class="caret"></span
             ></a>
             <ul class="dropdown-menu">
               <li>
-                <a style="cursor: 'pointer'" (click)="onSaveData()">Save Data</a>
+                <a style="cursor: 'pointer'" (click)="onSaveData()"
+                  >Save Data</a
+                >
               </li>
               <li>
                 <a style="cursor: 'pointer'" (click)="onFetchData()"
                   >Fetch Data</a
-                  >
-                </li>
-              </ul>
-            </li>
-          }
-        </ul>
-      </div>
+                >
+              </li>
+            </ul>
+          </li>
+        }
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
