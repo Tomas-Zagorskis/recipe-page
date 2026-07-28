@@ -9,9 +9,10 @@ import * as fromApp from '../../store/app.reducer';
 import * as RecipesActions from '../store/recipe.actions';
 
 @Component({
-  selector: 'app-recipe-edit',
-  templateUrl: './recipe-edit.component.html',
-  styleUrls: ['./recipe-edit.component.css'],
+    selector: 'app-recipe-edit',
+    templateUrl: './recipe-edit.component.html',
+    styleUrls: ['./recipe-edit.component.css'],
+    standalone: false
 })
 export class RecipeEditComponent implements OnInit, OnDestroy {
   id: number;
