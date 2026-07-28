@@ -9,6 +9,10 @@
     "test": "ng test"
   },
   "private": true,
+  "overrides": {
+    "@modelcontextprotocol/sdk": "1.30.0",
+    "@hono/node-server": "^2.0.5"
+  },
   "dependencies": {
     "@angular/common": "^21.2.18",
     "@angular/compiler": "^21.2.18",
