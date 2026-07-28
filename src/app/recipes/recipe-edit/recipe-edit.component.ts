@@ -12,6 +12,7 @@ import * as RecipesActions from '../store/recipe.actions';
   selector: 'app-recipe-edit',
   templateUrl: './recipe-edit.component.html',
   styleUrls: ['./recipe-edit.component.css'],
+  standalone: false,
 })
 export class RecipeEditComponent implements OnInit, OnDestroy {
   id: number;
@@ -23,7 +24,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private store: Store<fromApp.AppState>
+    private store: Store<fromApp.AppState>,
   ) {}
 
   ngOnInit(): void {
@@ -40,11 +41,11 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
         RecipesActions.updateRecipe({
           index: this.id,
           recipe: this.recipeForm.value,
-        })
+        }),
       );
     } else {
       this.store.dispatch(
-        RecipesActions.addRecipe({ recipe: this.recipeForm.value })
+        RecipesActions.addRecipe({ recipe: this.recipeForm.value }),
       );
     }
     this.onCancel();
@@ -58,7 +59,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
           Validators.required,
           Validators.pattern(/^[1-9]+[0-9]*$/),
         ]),
-      })
+      }),
     );
   }
 
@@ -88,9 +89,9 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
         .pipe(
           map((recipeState) => {
             return recipeState.recipes.find(
-              (recipe, index) => index === this.id
+              (recipe, index) => index === this.id,
             );
-          })
+          }),
         )
         .subscribe((recipe) => {
           recipeName = recipe.name;
@@ -105,7 +106,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
                     Validators.required,
                     Validators.pattern(/^[1-9]+[0-9]*$/),
                   ]),
-                })
+                }),
               );
             }
           }

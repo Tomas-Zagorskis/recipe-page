@@ -5,6 +5,7 @@ import { Recipe } from '../../recipe.model';
   selector: 'app-recipe-item',
   templateUrl: './recipe-item.component.html',
   styleUrls: ['./recipe-item.component.css'],
+  standalone: false,
 })
 export class RecipeItemComponent {
   @Input() recipeItem: Recipe;

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Recipe } from '../recipe.model';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer';
 import { map } from 'rxjs/operators';
@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
   styleUrls: ['./recipe-list.component.css'],
+  standalone: false,
 })
 export class RecipeListComponent implements OnInit, OnDestroy {
   recipes: Recipe[];
@@ -18,7 +19,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private store: Store<fromApp.AppState>
+    private store: Store<fromApp.AppState>,
   ) {}
 
   ngOnInit(): void {

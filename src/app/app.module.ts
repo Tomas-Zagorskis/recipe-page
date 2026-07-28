@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
@@ -19,16 +22,19 @@ import { RecipeEffects } from './recipes/store/recipe.effects';
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [
-    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     SharedModule,
     CoreModule,
     StoreModule.forRoot(fromApp.appReducers),
     EffectsModule.forRoot([AuthEffects, RecipeEffects]),
-    StoreDevtoolsModule.instrument({ logOnly: environment.production }),
+    StoreDevtoolsModule.instrument({
+      logOnly: environment.production,
+      connectInZone: true,
+    }),
     StoreRouterConnectingModule.forRoot(),
   ],
+  providers: [provideHttpClient(withInterceptorsFromDi())],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

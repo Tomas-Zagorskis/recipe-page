@@ -9,6 +9,7 @@ import * as AuthActions from './store/auth.actions';
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css'],
+  standalone: false,
 })
 export class AuthComponent implements OnInit, OnDestroy {
   isLoginMode = true;
@@ -38,11 +39,11 @@ export class AuthComponent implements OnInit, OnDestroy {
 
     if (this.isLoginMode) {
       this.store.dispatch(
-        AuthActions.loginStart({ email: email, password: password })
+        AuthActions.loginStart({ email: email, password: password }),
       );
     } else {
       this.store.dispatch(
-        AuthActions.signupStart({ email: email, password: password })
+        AuthActions.signupStart({ email: email, password: password }),
       );
     }
     form.reset();

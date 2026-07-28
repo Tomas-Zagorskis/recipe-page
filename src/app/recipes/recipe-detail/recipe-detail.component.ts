@@ -12,6 +12,7 @@ import * as ShoppingListActions from '../../shopping-list/store/shopping-list.ac
   selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.component.html',
   styleUrls: ['./recipe-detail.component.css'],
+  standalone: false,
 })
 export class RecipeDetailComponent implements OnInit {
   recipe: Recipe;
@@ -20,7 +21,7 @@ export class RecipeDetailComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private store: Store<fromApp.AppState>
+    private store: Store<fromApp.AppState>,
   ) {}
 
   ngOnInit(): void {
@@ -34,8 +35,8 @@ export class RecipeDetailComponent implements OnInit {
           return this.store.select('recipes');
         }),
         map((recipesState) =>
-          recipesState.recipes.find((recipe, index) => index === this.id)
-        )
+          recipesState.recipes.find((recipe, index) => index === this.id),
+        ),
       )
       .subscribe((recipe) => {
         this.recipe = recipe;
@@ -46,7 +47,7 @@ export class RecipeDetailComponent implements OnInit {
     this.store.dispatch(
       ShoppingListActions.addIngredients({
         ingredients: this.recipe.ingredients,
-      })
+      }),
     );
   }
 
