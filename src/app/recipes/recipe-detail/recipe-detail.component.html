@@ -1,36 +1,38 @@
 @if (!!recipe) {
   <div>
     <div class="row">
-      <div class="col-xs-12">
-        <img [src]="recipe.imagePath" alt="" class="img-responsive" />
+      <div class="col-12">
+        <img [src]="recipe.imagePath" alt="" class="img-fluid" />
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col-12">
         <h1>{{ recipe.name }}</h1>
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col-12">
         <div class="btn-group" appDropdown>
           <button type="button" class="btn btn-primary dropdown-toggle">
-            Manage Recipe <span class="caret"></span>
+            Manage Recipe
           </button>
           <ul class="dropdown-menu">
             <li>
               <a
+                class="dropdown-item"
                 style="cursor: 'pointer'"
                 (click)="onAddToShoppingList()"
                 >To Shopping List</a
               >
             </li>
             <li>
-              <a routerLink="edit" style="cursor: 'pointer'"
+              <a class="dropdown-item" routerLink="edit" style="cursor: 'pointer'"
                 >Edit Recipe</a
               >
             </li>
             <li>
               <a
+                class="dropdown-item"
                 routerLink="/recipes"
                 style="cursor: 'pointer'"
                 (click)="onDeleteRecipe()"
@@ -42,10 +44,10 @@
       </div>
     </div>
     <div class="row margin">
-      <div class="col-xs-12">{{ recipe.description }}</div>
+      <div class="col-12">{{ recipe.description }}</div>
     </div>
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col-12">
         <ul class="list-group">
           @for (ingredient of recipe.ingredients; track ingredient) {
             <li class="list-group-item">

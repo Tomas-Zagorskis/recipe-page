@@ -1,8 +1,8 @@
 <div class="row">
-  <div class="col-xs-12">
+  <div class="col-12">
     <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-12">
           <button
             type="submit"
             class="btn btn-success"
@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-12">
           <label for="name">Name</label>
           <input
             type="text"
@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-12">
           <label for="imagePath">Image URL</label>
           <input
             type="text"
@@ -39,12 +39,12 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12">
-          <img [src]="imagePath.value" class="img-responsive" />
+        <div class="col-12">
+          <img [src]="imagePath.value" class="img-fluid" />
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-12">
           <label for="description">Description</label>
           <textarea
             rows="6"
@@ -56,28 +56,28 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12" formArrayName="ingredients">
+        <div class="col-12" formArrayName="ingredients">
           @for (
             ingredientCtrl of controls;
             track ingredientCtrl;
             let i = $index
           ) {
             <div class="row" [formGroupName]="i" style="margin-top: 10px">
-              <div class="col-xs-8">
+              <div class="col-8">
                 <input
                   type="text"
                   class="form-control inset-shadow"
                   formControlName="name"
                 />
               </div>
-              <div class="col-xs-2">
+              <div class="col-2">
                 <input
                   type="number"
                   class="form-control inset-shadow"
                   formControlName="amount"
                 />
               </div>
-              <div class="col-xs-2">
+              <div class="col-2">
                 <button
                   type="button"
                   (click)="onDeleteIngredient(i)"
@@ -90,7 +90,7 @@
           }
           <hr />
           <div class="row">
-            <div class="col-xs-12">
+            <div class="col-12">
               <button
                 type="button"
                 class="btn btn-success"

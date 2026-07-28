@@ -20,7 +20,7 @@
     "@ngrx/effects": "^21.1.1",
     "@ngrx/router-store": "^21.1.1",
     "@ngrx/store": "^21.1.1",
-    "bootstrap": "^3.0.0",
+    "bootstrap": "^5.3.8",
     "rxjs": "^6.6.3",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.1"

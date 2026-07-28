@@ -1,61 +1,69 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <button
-        type="button"
-        class="navbar-toggle"
-        (click)="collapsed = !collapsed"
-      >
-        @for (iconBar of [1, 2, 3]; track iconBar) {
-          <span class="icon-bar"></span>
-        }
-      </button>
-      <a routerLink="/" class="navbar-brand">Recipe Book</a>
-    </div>
+    <a routerLink="/" class="navbar-brand">Recipe Book</a>
+    <button
+      type="button"
+      class="navbar-toggler"
+      (click)="collapsed = !collapsed"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <div
-      class="navbar-collapse"
-      [class.collapse]="collapsed"
+      class="collapse navbar-collapse"
+      [class.show]="!collapsed"
       (window:resize)="collapsed = true"
     >
-      <ul class="nav navbar-nav">
+      <ul class="navbar-nav me-auto">
         @if (isAuthenticated) {
-          <li routerLinkActive="active">
-            <a routerLink="/recipes">Recipes</a>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/recipes" routerLinkActive="active"
+              >Recipes</a
+            >
           </li>
         }
         @if (!isAuthenticated) {
-          <li routerLinkActive="active">
-            <a routerLink="/auth">Authenticate</a>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/auth" routerLinkActive="active"
+              >Authenticate</a
+            >
           </li>
         }
-        <li routerLinkActive="active">
-          <a routerLink="/shopping">Shopping List</a>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/shopping" routerLinkActive="active"
+            >Shopping List</a
+          >
         </li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="navbar-nav">
         @if (isAuthenticated) {
-          <li>
-            <a style="cursor: 'pointer'" (click)="onLogout()"
+          <li class="nav-item">
+            <a class="nav-link" style="cursor: 'pointer'" (click)="onLogout()"
               >Logout</a
             >
           </li>
         }
         @if (isAuthenticated) {
-          <li class="dropdown" appDropdown>
+          <li class="nav-item dropdown" appDropdown>
             <a
+              class="nav-link dropdown-toggle"
               style="cursor: 'pointer'"
-              class="dropdown-toggle"
               role="button"
-              >Manage <span class="caret"></span
-            ></a>
+              >Manage</a
+            >
             <ul class="dropdown-menu">
               <li>
-                <a style="cursor: 'pointer'" (click)="onSaveData()"
+                <a
+                  class="dropdown-item"
+                  style="cursor: 'pointer'"
+                  (click)="onSaveData()"
                   >Save Data</a
                 >
               </li>
               <li>
-                <a style="cursor: 'pointer'" (click)="onFetchData()"
+                <a
+                  class="dropdown-item"
+                  style="cursor: 'pointer'"
+                  (click)="onFetchData()"
                   >Fetch Data</a
                 >
               </li>
