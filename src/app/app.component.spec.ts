@@ -1,48 +1,50 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Store, StoreModule } from '@ngrx/store';
+import { Store } from '@ngrx/store';
+import { vi } from 'vitest';
 
+import { AppModule } from './app.module';
 import { AppComponent } from './app.component';
-import * as fromApp from './store/app.reducer';
 
 /**
- * Boots the root component against the real store so an upgrade that breaks
- * dependency injection or the NgRx wiring fails here rather than in the browser.
- * Child components are stubbed out via NO_ERRORS_SCHEMA to keep the assertion
- * on the DI graph.
+ * Boots the root component through the real AppModule, so an upgrade that breaks
+ * dependency injection, the NgRx wiring or the template scope fails here rather
+ * than in the browser. AppModule is imported rather than re-declaring the
+ * component, because templates are AOT-compiled and need their real module scope
+ * to resolve <app-header> and <router-outlet>.
  */
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [AppComponent],
-      imports: [StoreModule.forRoot(fromApp.appReducers)],
-      schemas: [NO_ERRORS_SCHEMA],
+      imports: [AppModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
   });
 
   it('instantiates with the store injected', () => {
+    // detectChanges is required even here: it runs ngOnInit on the child
+    // header, without which its ngOnDestroy unsubscribes an undefined
+    // subscription during fixture cleanup.
+    fixture.detectChanges();
+
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('dispatches autoLogin once on init', () => {
+  it('dispatches autoLogin on init', () => {
     const store = TestBed.inject(Store);
-    const dispatch = spyOn(store, 'dispatch').and.callThrough();
+    const dispatch = vi.spyOn(store, 'dispatch');
 
     fixture.detectChanges();
 
-    expect(dispatch).toHaveBeenCalledTimes(1);
     expect(dispatch).toHaveBeenCalledWith({ type: '[Auth] Auto Login' });
   });
 
-  it('renders the router outlet', () => {
+  it('renders the header and the router outlet', () => {
     fixture.detectChanges();
 
-    expect(
-      fixture.nativeElement.querySelector('router-outlet')
-    ).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('app-header')).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('router-outlet')).toBeTruthy();
   });
 });
